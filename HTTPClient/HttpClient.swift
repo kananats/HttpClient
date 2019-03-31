@@ -92,7 +92,7 @@ extension HttpClient {
         }
         
         func request() -> Single<Data> {
-            return self.request(api: "api/users/")
+            return self.request(api: "api/users")
         }
     }
 }
