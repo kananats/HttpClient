@@ -14,7 +14,6 @@ final class HttpClient { }
 extension HttpClient {
 
     final class GetUser: RequestProtocol {
-        
         struct Data: Codable {
             let data: User
             
@@ -26,6 +25,8 @@ extension HttpClient {
             }
         }
         
+        let method: HTTPMethod = .get
+        
         private let id: Int
         
         init(id: Int) {
@@ -33,7 +34,7 @@ extension HttpClient {
         }
         
         func request() -> Single<Data> {
-            return request(api: "api/users/\(self.id)", method: .get)
+            return request(api: "api/users/\(self.id)")
         }
     }
     
@@ -54,6 +55,8 @@ extension HttpClient {
             }
         }
         
+        let method: HTTPMethod = .get
+        
         private let page: Int?
         
         init(page: Int? = nil) {
@@ -62,9 +65,9 @@ extension HttpClient {
         
         func request() -> Single<Data> {
             if let page = self.page {
-                return request(api: "api/users?page=\(page)", method: .get)
+                return request(api: "api/users?page=\(page)")
             }
-            return request(api: "api/users", method: .get)
+            return request(api: "api/users")
         }
     }
 }
