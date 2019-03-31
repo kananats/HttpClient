@@ -12,8 +12,32 @@ import Alamofire
 final class HttpClient { }
 
 extension HttpClient {
-    
+
     final class GetUser: RequestProtocol {
+        
+        struct Data: Codable {
+            let data: User
+            
+            struct User: Codable {
+                let id: Int
+                let first_name: String
+                let last_name: String
+                let avatar: String
+            }
+        }
+        
+        private let id: Int
+        
+        init(id: Int) {
+            self.id = id
+        }
+        
+        func request() -> Single<Data> {
+            return request(api: "api/users/\(self.id)", method: .get)
+        }
+    }
+    
+    final class GetUsers: RequestProtocol {
         
         struct Data: Codable {
             let page: Int
@@ -38,9 +62,9 @@ extension HttpClient {
         
         func request() -> Single<Data> {
             if let page = self.page {
-                return request(api: "users?page=\(page)")
+                return request(api: "api/users?page=\(page)", method: .get)
             }
-            return request(api: "users")
+            return request(api: "api/users", method: .get)
         }
     }
 }

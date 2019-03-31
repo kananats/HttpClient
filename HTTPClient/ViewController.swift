@@ -15,12 +15,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        _ = HttpClient.GetUser(page: 3).request().subscribe(
+        _ = HttpClient.GetUser(id: 2).request().subscribe(
+            onSuccess: { response in
+                print("ktr success", response.data)
+            },
+            onError: { error in
+                print("ktr error", error.localizedDescription)
+            }
+        )
+        
+        /*
+        _ = HttpClient.GetUsers(page: 3).request().subscribe(
             onSuccess: { response in
                 print("ktr", response.data.first!.first_name)
             },
             onError: { _ in
             }
         )
+        */
     }
 }
