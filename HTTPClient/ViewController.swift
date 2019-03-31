@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        endpoint = Endpoint()
         _ = HttpClient.PostUser(name: "morpheus", job: "leader").request().subscribe(
             onSuccess: { data in
                 print("ktr success", data.createdAt)

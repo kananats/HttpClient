@@ -13,11 +13,11 @@ protocol RequestProtocol {
     
     associatedtype Data: Codable
     
+    var api: URLConvertible { get }
+    
     var method: HTTPMethod { get }
     
     var parameters: Parameters? { get }
-    
-    func request() -> Single<Data>
 }
 
 extension RequestProtocol {
@@ -26,9 +26,9 @@ extension RequestProtocol {
     
     var parameters: Parameters? { return nil }
     
-    func request(api: URLConvertible) -> Single<Data> {
+    func request() -> Single<Data> {
         return .create { observer in
-            endpoint.request(api: api, method: self.method, parameters: self.parameters) { response in
+            endpoint.request(api: self.api, method: self.method, parameters: self.parameters) { response in
                 guard case .success(_) = response.result,
                     let json = response.data else {
                     observer(.error(response.error!))
