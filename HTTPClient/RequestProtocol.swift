@@ -22,13 +22,9 @@ protocol RequestProtocol {
 
 extension RequestProtocol {
     
-    var method: HTTPMethod {
-        return .get
-    }
+    var method: HTTPMethod { return .get }
     
-    var parameters: Parameters? {
-        return nil
-    }
+    var parameters: Parameters? { return nil }
     
     func request(api: URLConvertible) -> Single<Data> {
         return .create { observer in

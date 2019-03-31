@@ -35,7 +35,7 @@ extension HttpClient {
         }
         
         func request() -> Single<Data> {
-            return request(api: "api/users/\(self.id)")
+            return self.request(api: "api/users/\(self.id)")
         }
     }
     
@@ -69,7 +69,7 @@ extension HttpClient {
         }
         
         func request() -> Single<Data> {
-            return request(api: "api/users")
+            return self.request(api: "api/users")
         }
     }
     
@@ -92,7 +92,7 @@ extension HttpClient {
         }
         
         func request() -> Single<Data> {
-            return request(api: "api/users/")
+            return self.request(api: "api/users/")
         }
     }
 }

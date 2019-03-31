@@ -8,7 +8,7 @@
 
 import Alamofire
 
-let endpoint = MockEndpoint()
+var endpoint: EndpointProtocol = Endpoint()
 
 protocol EndpointProtocol {
     
