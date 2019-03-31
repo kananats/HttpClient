@@ -28,7 +28,8 @@ final class Endpoint: EndpointProtocol {
 final class MockEndpoint: EndpointProtocol {
     
     func request(api: URLConvertible, method: HTTPMethod, parameters: Parameters?, completion: @escaping (DataResponse<Any>) -> ()) {
-        let json = self.makeJson(api: try! api.asURL().absoluteString, method: method)
+        let api = try! api.asURL().absoluteString
+        let json = self.makeJson(api: api, method: method)
         
         self.request(json: json, completion: completion)
     }

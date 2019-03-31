@@ -14,6 +14,7 @@ final class HttpClient { }
 extension HttpClient {
 
     final class GetUser: RequestProtocol {
+        
         struct Data: Codable {
             let data: User
             
