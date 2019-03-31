@@ -9,7 +9,9 @@
 import RxSwift
 import Alamofire
 
-final class HttpClient {
+final class HttpClient { }
+
+extension HttpClient {
     
     final class GetUser: RequestProtocol {
         
@@ -28,8 +30,17 @@ final class HttpClient {
             }
         }
         
+        private let page: Int?
+        
+        init(page: Int? = nil) {
+            self.page = page
+        }
+        
         func request() -> Single<Data> {
-            return request(api: "users?page=1")
+            if let page = self.page {
+                return request(api: "users?page=\(page)")
+            }
+            return request(api: "users")
         }
     }
 }

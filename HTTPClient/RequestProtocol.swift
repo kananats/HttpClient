@@ -9,7 +9,7 @@
 import RxSwift
 import Alamofire
 
-fileprivate let endpoint = MockEndpoint()
+fileprivate let endpoint = Endpoint()
 
 protocol RequestProtocol {
     

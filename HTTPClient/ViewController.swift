@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        _ = HttpClient.GetUser().request().subscribe(
+        _ = HttpClient.GetUser(page: 3).request().subscribe(
             onSuccess: { response in
                 print("ktr", response.data.first!.first_name)
             },
